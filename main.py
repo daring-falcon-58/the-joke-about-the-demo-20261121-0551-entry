@@ -34,6 +34,10 @@ JOKE = (
 
 
 def main() -> None:
+    if not 1 <= len(JOKE) <= 280:
+        raise ValueError(f"joke must be 1-280 characters, got {len(JOKE)}")
+    if "\n" in JOKE or not JOKE.strip():
+        raise ValueError("joke must be a single non-blank line")
     output_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
     output_dir.mkdir(parents=True, exist_ok=True)
     target = output_dir / "entry.txt"
